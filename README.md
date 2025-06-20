@@ -1,84 +1,101 @@
-# Group Project Repository
+# Neural Tangent Kernel (NTK) Analysis Project
 
-This repository contains all materials for the group project in the course **WI4450: Special Topics in Computational Science and Engineering (2024/2025 Q3–Q4)**. The structure is designed to organize deliverables clearly and support reproducibility and collaboration.
+This repository contains a comprehensive analysis of Neural Tangent Kernel (NTK) behavior in both finite and infinite width regimes, with a focus on Physics-Informed Neural Networks (PINNs). This project was completed for the course **WI4450: Special Topics in Computational Science and Engineering (2024/2025 Q3–Q4)**.
 
-## Directory Structure
+## 🎯 Project Overview
 
-### `data/`
-- Contains all data required to run the code (if applicable).
-- This may include raw datasets, preprocessed inputs, or synthetic data generated for testing.
+This project investigates the scaling properties of Neural Tangent Kernels in finite-width and finite-depth neural networks, inspired by the paper ["Finite Depth and Width Corrections to the Neural Tangent Kernel"](https://arxiv.org/abs/1909.05989). The research explores:
 
-### `code/`
-- Contains a Jupyter notebook named `main.ipynb` with *all your* code needed to reproduce the results in the report.
-- If third-party Python package source code is required, include it as subdirectories within the `code/` folder.
-- The notebook should be:
-  - Readable and well-structured
-  - Easy to run and understand
-  - Self-contained, with clearly defined inputs and outputs
-- Theoretical derivations or detailed explanations should be included in the report. However, if such material is necessary to follow the notebook or understand the experimental reasoning, it should also be included in the notebook.
+- **NTK scaling behavior** with respect to network depth and width
+- **Activation function effects** on NTK properties (ReLU, GELU, Sigmoid)
+- **Physics-Informed Neural Networks (PINNs)** in both infinite and finite width regimes
+- **Training dynamics** and convergence properties
 
-### `presentation/`
-- Contains the slides used in the final project presentation.
-- You may use LaTeX (beamer), PowerPoint, or another format. LaTeX (beamer) is recommended.
-- Instructions for the Presentations
-  - Each group has **35 minutes total**, including:
-    - **20–25 minutes for the presentation**
-    - **10–15 minutes for questions**
-    - **Do not exceed 25 minutes** for the presentation itself
-  - The presentation should:
-    - Be **comprehensible to all course participants**
-    - Have a **clear and logical structure** (the structure of the report can be a guideline)
-    - **Tell a compelling story** to engage the audience
-    - Prioritize a **clear narrative over completeness**; you do not need to show all results, as these will be included in the report and submitted code/notebooks
-  - **All group members must actively contribute** to:
-    - The **presentation**
-    - The **question and answer session**
-  - The presentation should include:
-    - A **clear motivation and statement of your research question**
-    - References to **relevant state-of-the-art literature**
-    - An explanation of your **methodology and results**
-    - An **answer to your research question**, or a discussion of what your findings reveal about it
-    - (Optional) **Live code demonstration**
-    - (Optional) **Suggestions for future work**
-  - Grading information:
-    - **All of the above aspects will be considered**
-    - The presentation accounts for **50% of the final grade**
-- **Additional instructions**:
-  - Upload your **slides and/or notebook** to the group repository **before June 18**
-  - There will be a **10-minute break after every second presentation**
-  - If you plan to use your **own laptop** (e.g., for code demonstrations), please **test it before the session starts** or during the break before your slot
-  - Unless you have a **conflicting important appointment or course**, please **stay for the entire session** to support your peers
+## 📁 Repository Structure
 
-### `report/`
-- Contains the LaTeX source files for the project report.
-- Use the provided template: [https://dzwaneveld.github.io/](https://dzwaneveld.github.io/) for consistency.
-- The main text of the report should not exceed **10 pages** (excluding title page, TOC, references, etc.).
-- The report should be concise yet self-contained. Concepts and methods not covered in lectures must be clearly explained.
-- A typical structure includes:
-  - **Introduction**: Introduce the problem and its relevance.
-  - **Literature Review**: Summarize related work and highlight open questions.
-  - **Research Question**: Clearly state the research question or hypothesis.
-  - **Methodology**: Describe the approach, algorithms, and methods used.
-  - **Numerical Results**: Present and analyze your numerical results or simulations.
-  - **Discussion and Conclusion**: Interpret the findings, discuss implications, and suggest possible future work.
-- Be selective with your results—only include those relevant to your discussion.
-- Include all necessary files to compile the report (e.g., `.tex`, `.bib`, figures, custom style files).
+### `code/` - Implementation and Experiments
+The main implementation directory containing all computational experiments and analysis.
 
-### `project-proposal/`
-- Contains the initial project proposal.
-- The proposal should include:
-  - A brief motivation for the selected topic
-  - A clearly defined research question
-  - A few key references (literature and/or code)
+**Key Components:**
+- **`experiments/`** - Jupyter notebooks with all numerical experiments:
+  - `infinite_ntk.ipynb` - NTK analysis in infinite width regime
+  - `finite_width_analysis.ipynb` - NTK behavior in finite-width networks
+  - `pinn_infinite.ipynb` - PINN analysis in infinite width regime
+  - `pinn_finite_width_analysis.ipynb` - PINN performance with finite-width networks
+  - `supplementary/full_training_analysis.ipynb` - Comprehensive training dynamics analysis
+- **`util/`** - Utility functions and helper modules
+- **`requirements.txt`** - Python dependencies
+- **`README.md`** - Detailed setup and usage instructions
 
-## Instructions
+**Quick Start:**
+```bash
+cd code
+conda create -n ntk_pinn python=3.10
+conda activate ntk_pinn
+pip install -r requirements.txt
+```
 
-- All code must be written in **Python**.
-- Include a `requirements.txt` file in the root directory listing all required packages.
-- If needed, include external Git repositories as submodules using `git submodule add`. See: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
-- Clearly disclose the use of AI tools (e.g., for writing code or text) in the report and/or notebook.
-- Cite all references and give appropriate credit for any external code, libraries, or resources used.
-- All original code and numerical experiments must be implemented in the Jupyter notebook.
-- The notebook should provide sufficient description of the numerical experiments. Do not repeat all experiment details in the report—only include what's necessary for understanding the discussion.
-- Work directly in this repository (or in submodules) to ensure all changes are properly tracked and reproducible.
-- Maintain a working version of the report and update it regularly throughout the project, rather than completing it only at the end.
+### `data/` - Data Storage
+Contains all experimental data, including:
+- Pre-computed NTK matrices for different activation functions
+- Training data and results
+- PINN-specific datasets
+
+### `report/` - Final Project Report
+- **`report.pdf`** - Complete project report with findings and analysis
+- LaTeX source files for the report
+
+### `presentation/` - Project Presentation
+Contains materials used for the final project presentation, including slides and supporting documents.
+
+### `project-proposal/` - Initial Research Plan
+- **`draft.md`** - Original project proposal with research objectives
+- **`feedback.md`** - Feedback received on the proposal
+- **`README.md`** - Proposal documentation
+
+### `1909.05989v1.pdf` - Reference Paper
+The foundational paper that inspired this research project.
+
+## 🚀 Getting Started
+
+### For Researchers/Students
+1. **Read the report** (`report/report.pdf`) to understand the findings
+2. **Explore the code** in `code/experiments/` to see the implementation
+3. **Run experiments** by following the setup instructions in `code/README.md`
+
+### For Code Reviewers
+1. Start with `code/experiments/finite_width_analysis.ipynb` for core NTK analysis
+2. Check `code/experiments/pinn_finite_width_analysis.ipynb` for PINN-specific results
+3. Review `code/util/` for implementation details
+
+### For Presentation Reviewers
+1. Check `presentation/` for slides and materials
+2. Review the main findings in `report/report.pdf`
+
+## 🔬 Key Findings
+
+The project provides insights into:
+- **NTK scaling laws** in practical finite-width settings
+- **Activation function impact** on NTK behavior
+- **PINN performance** across different network architectures
+- **Training dynamics** and convergence properties
+
+## 📋 Requirements
+
+- Python 3.10
+- JAX and Flax for neural network implementation
+- Neural Tangents for NTK computations
+- See `code/requirements.txt` for complete dependencies
+
+## 📚 References
+
+- [Finite Depth and Width Corrections to the Neural Tangent Kernel](https://arxiv.org/abs/1909.05989) - Primary reference paper
+- Additional references available in the final report
+
+## 🤝 Contributing
+
+This is a completed academic project. For questions or discussions about the methodology or results, please refer to the report and code documentation.
+
+---
+
+**Note:** This project was completed as part of WI4450: Special Topics in Computational Science and Engineering (2024/2025 Q3–Q4). All code, analysis, and findings are documented for reproducibility and educational purposes.
